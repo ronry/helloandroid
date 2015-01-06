@@ -1,8 +1,8 @@
 package com.ronry.helloandroid;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 
 /**
  * An activity representing a list of Items. This activity has different presentations for handset and tablet-size
