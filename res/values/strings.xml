@@ -5,8 +5,16 @@
     <string name="title_item_detail">Item Detail</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_quiz">答题游戏</string>
-    <string name="quiz_question">0是既不是正数也不是负数</string>
+    <string name="quiz_true_answer">回答正确</string>
+    <string name="quiz_fasle_answer">回答错误</string>
     <string name="quiz_answer_true">对</string>
     <string name="quiz_answer_fasle">错</string>
+    <string name="quiz_answer_next">下一题</string>
+     <string name="quiz_last_question">已经是最后一题了</string>
+    
+    <!--  题目 -->
+    <string name="quiz_question">0是既不是正数也不是负数</string>
+    <string name="quiz_question1">1是奇数</string>
+    <string name="quiz_question2">2是奇数</string>
 
 </resources>
