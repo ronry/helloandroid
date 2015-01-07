@@ -4,9 +4,9 @@
     <string name="app_name">helloandroid</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="action_settings">Settings</string>
-     <string name="title_activity_quiz">答题游戏</string>
-      <string name="quiz_question">0是既不是正数也不是负数</string>
-       <string name="quiz_answer_true">对</string>
-        <string name="quiz_answer_fasle">错</string>
+    <string name="title_activity_quiz">答题游戏</string>
+    <string name="quiz_question">0是既不是正数也不是负数</string>
+    <string name="quiz_answer_true">对</string>
+    <string name="quiz_answer_fasle">错</string>
 
 </resources>
