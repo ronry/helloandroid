@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,8 @@ import com.ronry.helloandroid.model.Question;
 
 public class QuizActivity extends Activity {
     
+    private final static String   tag       = "QuizActivity";
+
     private static List<Question> questions = new ArrayList<Question>();
 
     static {
@@ -37,6 +40,8 @@ public class QuizActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        
+        Log.d(tag, "onCreate was called");
 
         mQuestionView = (TextView) this.findViewById(R.id.quiz_question_view);
         nextQuestion();
@@ -82,6 +87,42 @@ public class QuizActivity extends Activity {
             }
         });
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(tag, "onPause was called");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(tag, "onResume was called");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(tag, "onStop was called");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(tag, "onRestart was called");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(tag, "onStart was called");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(tag, "onDestroy was called");
     }
 
     @Override
