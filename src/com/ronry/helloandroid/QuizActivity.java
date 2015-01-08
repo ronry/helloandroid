@@ -25,9 +25,11 @@ public class QuizActivity extends Activity {
     }
 
     private TextView              mQuestionView;
-    private Button mTrueButton;
-    private Button mFalseButton;
-    private Button mNextButton;
+    private Button                mTrueButton;
+    private Button                mFalseButton;
+    private Button                mNextButton;
+    private Button                mPreButton;
+    private Question              currentQuestion;
 
     private int                   index     = -1;
 
@@ -38,6 +40,20 @@ public class QuizActivity extends Activity {
 
         mQuestionView = (TextView) this.findViewById(R.id.quiz_question_view);
         nextQuestion();
+
+        mPreButton = (Button) this.findViewById(R.id.quiz_answer_previous_button);
+        mPreButton.setOnClickListener(new View.OnClickListener() {
+            
+            @Override
+            public void onClick(View arg0) {
+                if (--index == -1) {
+                    Toast.makeText(QuizActivity.this, R.string.quiz_first_question, Toast.LENGTH_SHORT).show();
+                    index++;
+                    return;
+                }
+                showQuestion();
+            }
+        });
 
         mNextButton = (Button) this.findViewById(R.id.quiz_answer_next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
@@ -89,17 +105,20 @@ public class QuizActivity extends Activity {
 
     private void nextQuestion() {
         if (++index == questions.size()) {
-            Toast.makeText(QuizActivity.this, R.string.quiz_last_question, Toast.LENGTH_LONG).show();
+            Toast.makeText(QuizActivity.this, R.string.quiz_last_question, Toast.LENGTH_SHORT).show();
+            index--;
             return;
         }
+        showQuestion();
+    }
 
-        Question question = questions.get(index);
-        mQuestionView.setText(question.getQuestionNo());
+    private void showQuestion() {
+        this.currentQuestion = questions.get(index);
+        mQuestionView.setText(currentQuestion.getQuestionNo());
     }
 
     private void judueAnswer(boolean choosedAnswer) {
-        Question question = questions.get(index);
-        if (question.isAnswer() == choosedAnswer) {
+        if (currentQuestion.isAnswer() == choosedAnswer) {
             Toast.makeText(QuizActivity.this, R.string.quiz_true_answer, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(QuizActivity.this, R.string.quiz_fasle_answer, Toast.LENGTH_SHORT).show();

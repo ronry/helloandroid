@@ -12,6 +12,7 @@
     <string name="quiz_answer_previous">上一题</string>
     <string name="quiz_answer_next">下一题</string>
      <string name="quiz_last_question">已经是最后一题了</string>
+     <string name="quiz_first_question">已经是第一题了</string>
     
     <!--  题目 -->
     <string name="quiz_question">0是既不是正数也不是负数</string>
