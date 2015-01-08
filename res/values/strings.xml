@@ -9,6 +9,7 @@
     <string name="quiz_fasle_answer">回答错误</string>
     <string name="quiz_answer_true">对</string>
     <string name="quiz_answer_fasle">错</string>
+    <string name="quiz_answer_previous">上一题</string>
     <string name="quiz_answer_next">下一题</string>
      <string name="quiz_last_question">已经是最后一题了</string>
     
