@@ -18,6 +18,7 @@ import com.ronry.helloandroid.model.Question;
 public class QuizActivity extends Activity {
     
     private final static String   tag       = "QuizActivity";
+    private final static String   INDEX     = "INDEX";
 
     private static List<Question> questions = new ArrayList<Question>();
 
@@ -42,6 +43,10 @@ public class QuizActivity extends Activity {
         setContentView(R.layout.activity_quiz);
         
         Log.d(tag, "onCreate was called");
+
+        if (savedInstanceState != null) {
+            this.index = savedInstanceState.getInt(INDEX, -1);
+        }
 
         mQuestionView = (TextView) this.findViewById(R.id.quiz_question_view);
         nextQuestion();
@@ -87,6 +92,14 @@ public class QuizActivity extends Activity {
             }
         });
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(tag, "onSaveInstanceState was called");
+        
+        outState.putInt(INDEX, --this.index);
     }
 
     @Override
