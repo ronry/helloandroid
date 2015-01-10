@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,7 +19,8 @@ import com.ronry.helloandroid.model.Question;
 public class QuizActivity extends Activity {
     
     private final static String   tag       = "QuizActivity";
-    private final static String   INDEX     = "INDEX";
+    private final static String   BUNDLE_KEY_INDEX          = "index";
+    private final static String   BUNDLE_KEY_CHEATED_STATUS = "cheated_status";
 
     private static List<Question> questions = new ArrayList<Question>();
 
@@ -29,13 +31,16 @@ public class QuizActivity extends Activity {
     }
 
     private TextView              mQuestionView;
+    private TextView              mCheatedView;
     private Button                mTrueButton;
     private Button                mFalseButton;
     private Button                mNextButton;
     private Button                mPreButton;
+    private Button                mCheatButton;
     private Question              currentQuestion;
 
-    private int                   index     = -1;
+    private int                   index;
+    private boolean[]             cheatdStatus              = new boolean[questions.size()]; ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +49,8 @@ public class QuizActivity extends Activity {
         
         Log.d(tag, "onCreate was called");
 
-        if (savedInstanceState != null) {
-            this.index = savedInstanceState.getInt(INDEX, -1);
-        }
-
         mQuestionView = (TextView) this.findViewById(R.id.quiz_question_view);
-        nextQuestion();
+        mCheatedView = (TextView) this.findViewById(R.id.quiz_textview_cheated);
 
         mPreButton = (Button) this.findViewById(R.id.quiz_answer_previous_button);
         mPreButton.setOnClickListener(new View.OnClickListener() {
@@ -67,10 +68,14 @@ public class QuizActivity extends Activity {
 
         mNextButton = (Button) this.findViewById(R.id.quiz_answer_next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
-            
             @Override
             public void onClick(View arg0) {
-                nextQuestion();
+                if (++index == questions.size()) {
+                    Toast.makeText(QuizActivity.this, R.string.quiz_last_question, Toast.LENGTH_SHORT).show();
+                    index--;
+                    return;
+                }
+                showQuestion();
             }
 
         });
@@ -92,6 +97,59 @@ public class QuizActivity extends Activity {
             }
         });
 
+        mCheatButton = (Button) this.findViewById(R.id.quiz_cheat_button);
+        mCheatButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+                intent.putExtra(CheatActivity.RIGHT_ANSWER_KEY, QuizActivity.this.currentQuestion.isAnswer());
+                QuizActivity.this.startActivityForResult(intent, 0);
+
+            }
+        });
+
+        if (savedInstanceState != null) {
+            this.index = savedInstanceState.getInt(BUNDLE_KEY_INDEX, -1);
+            this.cheatdStatus = savedInstanceState.getBooleanArray(BUNDLE_KEY_CHEATED_STATUS);
+        }
+        showQuestion();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d(tag, "onActivityResult called");
+
+        if (data.getBooleanExtra(CheatActivity.CHEADED_ANSWER_KEY, Boolean.FALSE)) {
+            cheatdStatus[index] = Boolean.TRUE;
+        }
+        checkCheatStatus();
+    }
+
+    private void showQuestion() {
+        this.currentQuestion = questions.get(index);
+        mQuestionView.setText(currentQuestion.getQuestionNo());
+        checkCheatStatus();
+    }
+
+    private void checkCheatStatus() {
+        if (cheatdStatus[index]) {
+            mCheatedView.setText(R.string.quiz_show_cheatd);
+        } else {
+            mCheatedView.setText("");
+        }
+    }
+
+    private void judueAnswer(boolean choosedAnswer) {
+        if (currentQuestion.isAnswer() == choosedAnswer) {
+            Toast.makeText(QuizActivity.this, R.string.quiz_true_answer, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(QuizActivity.this, R.string.quiz_fasle_answer, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -99,7 +157,8 @@ public class QuizActivity extends Activity {
         super.onSaveInstanceState(outState);
         Log.d(tag, "onSaveInstanceState was called");
         
-        outState.putInt(INDEX, --this.index);
+        outState.putInt(BUNDLE_KEY_INDEX, this.index);
+        outState.putBooleanArray(BUNDLE_KEY_CHEATED_STATUS, cheatdStatus);
     }
 
     @Override
@@ -155,27 +214,5 @@ public class QuizActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void nextQuestion() {
-        if (++index == questions.size()) {
-            Toast.makeText(QuizActivity.this, R.string.quiz_last_question, Toast.LENGTH_SHORT).show();
-            index--;
-            return;
-        }
-        showQuestion();
-    }
-
-    private void showQuestion() {
-        this.currentQuestion = questions.get(index);
-        mQuestionView.setText(currentQuestion.getQuestionNo());
-    }
-
-    private void judueAnswer(boolean choosedAnswer) {
-        if (currentQuestion.isAnswer() == choosedAnswer) {
-            Toast.makeText(QuizActivity.this, R.string.quiz_true_answer, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(QuizActivity.this, R.string.quiz_fasle_answer, Toast.LENGTH_SHORT).show();
-        }
     }
 }

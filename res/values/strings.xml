@@ -4,6 +4,8 @@
     <string name="app_name">helloandroid</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="action_settings">Settings</string>
+    
+    <!-- quiz -->
     <string name="title_activity_quiz">答题游戏</string>
     <string name="quiz_true_answer">回答正确</string>
     <string name="quiz_fasle_answer">回答错误</string>
@@ -11,12 +13,18 @@
     <string name="quiz_answer_fasle">错</string>
     <string name="quiz_answer_previous">上一题</string>
     <string name="quiz_answer_next">下一题</string>
+    <string name="quiz_cheat_button_text">偷看答案</string>
+    <string name="quiz_show_cheatd" >你作弊了</string>
     <string name="quiz_last_question">已经是最后一题了</string>
     <string name="quiz_first_question">已经是第一题了</string>
-    
     <!--  题目 -->
     <string name="quiz_question">0是既不是正数也不是负数</string>
     <string name="quiz_question1">1是奇数</string>
     <string name="quiz_question2">2是奇数</string>
+    
+    <!-- cheat -->
+    <string name="title_activity_cheat">偷看答案</string>
+    <string name="cheat_warning" >你确定要作弊吗</string>
+    <string name="cheat_button_show_answer">偷看答案</string>
 
 </resources>
