@@ -1,4 +1,4 @@
-package com.ronry.helloandroid.model;
+package com.ronry.helloandroid.quiz;
 
 public class Question {
 

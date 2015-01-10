@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.ronry.helloandroid.R;
 import com.ronry.helloandroid.fragment.ItemDetailFragment;
 import com.ronry.helloandroid.fragment.ItemListFragment;
 

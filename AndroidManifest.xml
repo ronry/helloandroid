@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ronry.helloandroid.activity"
+    package="com.ronry.helloandroid"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -13,6 +13,16 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
         <activity
             android:name=".ItemListActivity"
             android:label="@string/app_name" >
@@ -26,15 +36,10 @@
                 android:value="com.ronry.helloandroid.ItemListActivity" />
         </activity>
         <activity
-            android:name=".QuizActivity"
+            android:name="com.ronry.helloandroid.quiz.QuizActivity"
             android:label="@string/title_activity_quiz" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity
-            android:name=".CheatActivity"
+        <activity android:name="com.ronry.helloandroid.quiz.CheatActivity"
             android:label="@string/title_activity_cheat" >
         </activity>
     </application>

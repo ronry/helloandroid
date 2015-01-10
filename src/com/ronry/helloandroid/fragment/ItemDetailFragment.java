@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ronry.helloandroid.R;
 import com.ronry.helloandroid.activity.ItemDetailActivity;
 import com.ronry.helloandroid.activity.ItemListActivity;
-import com.ronry.helloandroid.activity.R;
 import com.ronry.helloandroid.dummy.DummyContent;
 
 /**

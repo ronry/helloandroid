@@ -5,6 +5,9 @@
     <string name="title_item_detail">Item Detail</string>
     <string name="action_settings">Settings</string>
     
+    <!-- main -->
+    <string name="activity_main_button_text_quiz">Quiz</string>
+    
     <!-- quiz -->
     <string name="title_activity_quiz">答题游戏</string>
     <string name="quiz_true_answer">回答正确</string>

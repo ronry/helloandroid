@@ -1,4 +1,4 @@
-package com.ronry.helloandroid.activity;
+package com.ronry.helloandroid.quiz;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ronry.helloandroid.model.Question;
+import com.ronry.helloandroid.R;
 
 public class QuizActivity extends Activity {
     

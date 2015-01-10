@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
+import com.ronry.helloandroid.R;
 import com.ronry.helloandroid.fragment.ItemDetailFragment;
 
 /**
