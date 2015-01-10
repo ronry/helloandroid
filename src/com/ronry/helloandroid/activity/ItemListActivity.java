@@ -1,8 +1,11 @@
-package com.ronry.helloandroid;
+package com.ronry.helloandroid.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.ronry.helloandroid.fragment.ItemDetailFragment;
+import com.ronry.helloandroid.fragment.ItemListFragment;
 
 /**
  * An activity representing a list of Items. This activity has different presentations for handset and tablet-size

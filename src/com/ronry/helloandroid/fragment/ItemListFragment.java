@@ -1,4 +1,4 @@
-package com.ronry.helloandroid;
+package com.ronry.helloandroid.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
