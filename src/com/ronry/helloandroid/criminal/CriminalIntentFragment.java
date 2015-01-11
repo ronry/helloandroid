@@ -7,6 +7,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
 import com.ronry.helloandroid.R;
@@ -15,6 +19,8 @@ import com.ronry.helloandroid.R;
 public class CriminalIntentFragment extends Fragment {
 
     private EditText titleEditor;
+    private Button   dateButton;
+    private CheckBox solvedCheckBox;
 
     private Criminal criminal;
 
@@ -46,6 +52,19 @@ public class CriminalIntentFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable arg0) {
                 
+            }
+        });
+
+        dateButton = (Button) view.findViewById(R.id.criminal_intent_fragment_button_date);
+        dateButton.setText(criminal.getDate().toLocaleString());
+        dateButton.setEnabled(false);
+
+        solvedCheckBox = (CheckBox) view.findViewById(R.id.criminal_intent_fragment_checkbox_solved);
+        solvedCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            
+            @Override
+            public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+                criminal.setSolved(arg1);
             }
         });
 

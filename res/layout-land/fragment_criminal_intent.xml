@@ -29,18 +29,25 @@
         style="?android:listSeparatorTextViewStyle"
         android:text="@string/criminal_intent_fragment_label_detail" />
 
-    <Button
-        android:id="@+id/criminal_intent_fragment_button_date"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp" />
-
-    <CheckBox
-        android:id="@+id/criminal_intent_fragment_checkbox_solved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/criminal_intent_fragment_label_solved" />
+        android:layout_marginRight="16dp" >
+
+        <Button
+            android:id="@+id/criminal_intent_fragment_button_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <CheckBox
+            android:id="@+id/criminal_intent_fragment_checkbox_solved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.42"
+            android:text="@string/criminal_intent_fragment_label_solved" />
+
+    </LinearLayout>
 
 </LinearLayout>

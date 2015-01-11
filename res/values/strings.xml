@@ -34,5 +34,10 @@
     
     <!-- criminal -->
     <string name="title_activity_criminal_intent">陋习明细</string>
-
+    <string name="criminal_intent_fragment_label_title">标题</string>
+    <string name="criminal_intent_fragment_hint_title">请输入标题</string>
+	<string name="criminal_intent_fragment_label_detail">详情</string>
+	<string name="criminal_intent_fragment_label_solved">是否已解决</string>
+	
+	
 </resources>
