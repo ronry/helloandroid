@@ -18,4 +18,11 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/activity_main_button_criminal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/activity_main_button_text_criminal" />
+
 </LinearLayout>

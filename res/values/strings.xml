@@ -6,7 +6,8 @@
     <string name="action_settings">Settings</string>
     
     <!-- main -->
-    <string name="activity_main_button_text_quiz">Quiz</string>
+    <string name="activity_main_button_text_quiz">答题游戏</string>
+    <string name="activity_main_button_text_criminal">陋习管理</string>
     
     <!-- quiz -->
     <string name="title_activity_quiz">答题游戏</string>
@@ -29,5 +30,9 @@
     <string name="title_activity_cheat">偷看答案</string>
     <string name="cheat_warning" >你确定要作弊吗</string>
     <string name="cheat_button_show_answer">偷看答案</string>
+    
+    
+    <!-- criminal -->
+    <string name="title_activity_criminal_intent">陋习明细</string>
 
 </resources>

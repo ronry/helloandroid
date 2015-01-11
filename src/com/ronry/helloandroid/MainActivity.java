@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.ronry.helloandroid.criminal.CriminalIntentActivity;
 import com.ronry.helloandroid.quiz.QuizActivity;
 
 
@@ -22,6 +23,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 MainActivity.this.startActivity(new Intent(MainActivity.this, QuizActivity.class));
+            }
+        });
+
+        ((Button) this.findViewById(R.id.activity_main_button_criminal)).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                MainActivity.this.startActivity(new Intent(MainActivity.this, CriminalIntentActivity.class));
             }
         });
     }
