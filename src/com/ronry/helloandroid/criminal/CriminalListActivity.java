@@ -4,11 +4,12 @@ import android.app.Fragment;
 
 import com.ronry.helloandroid.SingleFragmentActivity;
 
-public class CriminalIntentActivity extends SingleFragmentActivity {
+
+public class CriminalListActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return new CriminalIntentFragment();
+        return new CriminalListFragment();
     }
 
 }

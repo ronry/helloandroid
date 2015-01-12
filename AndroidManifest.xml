@@ -31,10 +31,12 @@
             android:label="@string/title_activity_cheat" >
         </activity>
         
-        <activity android:name="com.ronry.helloandroid.criminal.CriminalIntentActivity"
+       <activity android:name="com.ronry.helloandroid.criminal.CriminalListActivity"
+            android:label="@string/title_activity_criminal_list" >
+        </activity>
+        <activity android:name="com.ronry.helloandroid.criminal.CriminialViewPagerActivity"
             android:label="@string/title_activity_criminal_intent" >
         </activity>
-        
         
     </application>
 

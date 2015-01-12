@@ -1,7 +1,7 @@
 package com.ronry.helloandroid.criminal;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -24,11 +24,17 @@ public class CriminalIntentFragment extends Fragment {
 
     private Criminal criminal;
 
+    public static final Fragment newInstance(String id) {
+        return new CriminalIntentFragment(id);
+    }
+
+    private CriminalIntentFragment(String id){
+        this.criminal = CriminalManager.get(this.getActivity()).getCriminal(id);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        criminal = new Criminal();
     }
 
     @Override
@@ -37,6 +43,7 @@ public class CriminalIntentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_criminal_intent, container, Boolean.FALSE);
         
         titleEditor = (EditText) view.findViewById(R.id.criminal_intent_fragment_title_editor);
+        titleEditor.setText(this.criminal.getTitle());
         titleEditor.addTextChangedListener(new TextWatcher() {
             
             @Override
@@ -60,6 +67,7 @@ public class CriminalIntentFragment extends Fragment {
         dateButton.setEnabled(false);
 
         solvedCheckBox = (CheckBox) view.findViewById(R.id.criminal_intent_fragment_checkbox_solved);
+        solvedCheckBox.setChecked(this.criminal.isSolved());
         solvedCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             
             @Override
