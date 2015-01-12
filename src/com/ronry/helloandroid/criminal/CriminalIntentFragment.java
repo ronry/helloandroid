@@ -1,5 +1,9 @@
 package com.ronry.helloandroid.criminal;
 
+import java.util.Date;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -25,16 +29,28 @@ public class CriminalIntentFragment extends Fragment {
     private Criminal criminal;
 
     public static final Fragment newInstance(String id) {
-        return new CriminalIntentFragment(id);
-    }
-
-    private CriminalIntentFragment(String id){
-        this.criminal = CriminalManager.get(this.getActivity()).getCriminal(id);
+        Bundle argument = new Bundle();
+        argument.putString("ID", id);
+        Fragment fragment = new CriminalIntentFragment();
+        fragment.setArguments(argument);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle argument = this.getArguments();
+        this.criminal = CriminalManager.get(this.getActivity()).getCriminal(argument.getString("ID"));
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        this.criminal.setDate((Date) data.getSerializableExtra("DATE"));
+        showDate();
     }
 
     @Override
@@ -63,8 +79,17 @@ public class CriminalIntentFragment extends Fragment {
         });
 
         dateButton = (Button) view.findViewById(R.id.criminal_intent_fragment_button_date);
-        dateButton.setText(criminal.getDate().toLocaleString());
-        dateButton.setEnabled(false);
+        showDate();
+        dateButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                CriminalDatePickerFragment datePickFragment = CriminalDatePickerFragment.newInstance(criminal.getDate());
+
+                datePickFragment.setTargetFragment(CriminalIntentFragment.this, 0);
+                datePickFragment.show(CriminalIntentFragment.this.getFragmentManager(), "CriminalDatePickerFragment");
+            }
+        });
 
         solvedCheckBox = (CheckBox) view.findViewById(R.id.criminal_intent_fragment_checkbox_solved);
         solvedCheckBox.setChecked(this.criminal.isSolved());
@@ -77,6 +102,10 @@ public class CriminalIntentFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void showDate() {
+        dateButton.setText(criminal.getDate().toLocaleString());
     }
 
 }

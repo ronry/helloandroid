@@ -45,4 +45,8 @@ public class Criminal {
         return date;
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
 }
