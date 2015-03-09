@@ -25,7 +25,12 @@ public class CriminalListFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Intent intent = new Intent(getActivity(), CriminialViewPagerActivity.class);
+        Intent intent = null;
+        if (position == 0) {
+            intent = new Intent(getActivity(), SingleCriminalViewActivity.class);
+        } else {
+            intent = new Intent(getActivity(), CriminialViewPagerActivity.class);
+        }
         intent.putExtra("position", position);
         getActivity().startActivity(intent);
     }

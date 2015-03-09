@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.ronry.helloandroid.criminal.CriminalListActivity;
+import com.ronry.helloandroid.hellomedia.HelloMediaActivity;
 import com.ronry.helloandroid.quiz.QuizActivity;
 
 
@@ -31,6 +32,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 MainActivity.this.startActivity(new Intent(MainActivity.this, CriminalListActivity.class));
+            }
+        });
+
+        ((Button) this.findViewById(R.id.main_activity_hellomedia_button)).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.startActivity(new Intent(MainActivity.this, HelloMediaActivity.class));
             }
         });
     }

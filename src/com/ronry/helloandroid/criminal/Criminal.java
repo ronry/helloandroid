@@ -1,14 +1,17 @@
 package com.ronry.helloandroid.criminal;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class Criminal {
+public class Criminal implements Serializable {
 
+    private static final long serialVersionUID = 7586165882440861762L;
     private String id;
     private String title;
     private Date date;
     private boolean solved;
+    private String            person;
 
     public Criminal(){
         super();
@@ -47,6 +50,14 @@ public class Criminal {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getPerson() {
+        return person;
+    }
+
+    public void setPerson(String person) {
+        this.person = person;
     }
 
 }

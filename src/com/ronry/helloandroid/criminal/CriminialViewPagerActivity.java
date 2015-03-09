@@ -16,6 +16,8 @@ public class CriminialViewPagerActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        int position = this.getIntent().getIntExtra("position", 0);
+
         final List<Criminal> criminals=CriminalManager.get(this).getCriminals();
         
         FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(this.getSupportFragmentManager()) {
@@ -34,6 +36,7 @@ public class CriminialViewPagerActivity extends FragmentActivity {
         ViewPager view=new ViewPager(this);
         view.setId(R.id.viewPager);
         view.setAdapter(adapter);
+        view.setCurrentItem(position);
         this.setContentView(view);
     }
 

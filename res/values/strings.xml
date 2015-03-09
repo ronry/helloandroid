@@ -8,6 +8,7 @@
     <!-- main -->
     <string name="activity_main_button_text_quiz">答题游戏</string>
     <string name="activity_main_button_text_criminal">陋习管理</string>
+    <string name="main_activity_hellomedia_button_label">Hello多媒体</string>
     
     <!-- quiz -->
     <string name="title_activity_quiz">答题游戏</string>
@@ -41,5 +42,10 @@
 	
 	<string name="title_activity_criminal_list">陋习列表</string>
 	
+	<string name="title_activity_hello_media">Hello多媒体</string>
+	
+	<string name="criminal_intent_activity_choose_person_button_label">选择相关人</string>
+	
+	<string name="criminal_intent_activity_send_button_label">发送信息</string>	
 	
 </resources>

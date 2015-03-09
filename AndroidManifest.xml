@@ -13,31 +13,42 @@
         android:icon="@drawable/lancher_android"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.ronry.helloandroid.quiz.QuizActivity"
             android:label="@string/title_activity_quiz" >
         </activity>
-        <activity android:name="com.ronry.helloandroid.quiz.CheatActivity"
+        <activity
+            android:name="com.ronry.helloandroid.quiz.CheatActivity"
             android:label="@string/title_activity_cheat" >
         </activity>
-        
-       <activity android:name="com.ronry.helloandroid.criminal.CriminalListActivity"
+        <activity
+            android:name="com.ronry.helloandroid.criminal.CriminalListActivity"
             android:label="@string/title_activity_criminal_list" >
         </activity>
-        <activity android:name="com.ronry.helloandroid.criminal.CriminialViewPagerActivity"
+        <activity
+            android:name="com.ronry.helloandroid.criminal.CriminialViewPagerActivity"
+            android:label="@string/title_activity_criminal_intent" >
+        </activity>
+        <activity
+            android:name="com.ronry.helloandroid.criminal.SingleCriminalViewActivity"
             android:label="@string/title_activity_criminal_intent" >
         </activity>
         
+        
+         <activity
+            android:name="com.ronry.helloandroid.hellomedia.HelloMediaActivity"
+            android:label="@string/title_activity_hello_media" >
+        </activity>
+
     </application>
 
 </manifest>

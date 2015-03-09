@@ -4,7 +4,9 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,9 +24,14 @@ import com.ronry.helloandroid.R;
 
 public class CriminalIntentFragment extends Fragment {
 
+    private final int CHOOSE_DATE_REQUEST   = 1;
+    private final int CHOOSE_PERSON_REQUEST = 2;
+
     private EditText titleEditor;
     private Button   dateButton;
     private CheckBox solvedCheckBox;
+    private Button   choosePersonButton;
+    private Button   sendButton;
 
     private Criminal criminal;
 
@@ -49,6 +56,24 @@ public class CriminalIntentFragment extends Fragment {
         if (resultCode != Activity.RESULT_OK) {
             return;
         }
+
+        switch (requestCode) {
+            case CHOOSE_DATE_REQUEST: {
+                
+            }
+            case CHOOSE_PERSON_REQUEST: {
+                
+                Cursor cursor = CriminalIntentFragment.this.getActivity().getContentResolver().query(data.getData(),
+                                                                                     new String[] { ContactsContract.Contacts.DISPLAY_NAME },
+                                                                                     null, null, null);
+                cursor.moveToFirst();
+                this.criminal.setPerson(cursor.getString(0));
+                choosePersonButton.setText(this.criminal.getPerson());
+                cursor.close();
+            }
+            default:
+        }
+
         this.criminal.setDate((Date) data.getSerializableExtra("DATE"));
         showDate();
     }
@@ -86,7 +111,7 @@ public class CriminalIntentFragment extends Fragment {
             public void onClick(View v) {
                 CriminalDatePickerFragment datePickFragment = CriminalDatePickerFragment.newInstance(criminal.getDate());
 
-                datePickFragment.setTargetFragment(CriminalIntentFragment.this, 0);
+                datePickFragment.setTargetFragment(CriminalIntentFragment.this, CHOOSE_DATE_REQUEST);
                 datePickFragment.show(CriminalIntentFragment.this.getFragmentManager(), "CriminalDatePickerFragment");
             }
         });
@@ -100,8 +125,33 @@ public class CriminalIntentFragment extends Fragment {
                 criminal.setSolved(arg1);
             }
         });
+        
+        this.choosePersonButton = (Button) view.findViewById(R.id.criminal_intent_activity_button_choose_person);
+        choosePersonButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                CriminalIntentFragment.this.startActivityForResult(intent, CHOOSE_PERSON_REQUEST);
+            }
+        });
+
+        this.sendButton = (Button) view.findViewById(R.id.criminal_intent_activit_button_send);
+        this.sendButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, criminal.getTitle());
+                intent.putExtra(Intent.EXTRA_SUBJECT, criminal.getTitle());
+                intent.putExtra(Intent.EXTRA_PHONE_NUMBER, criminal.getTitle());
+                CriminalIntentFragment.this.startActivity(intent);
+            }
+        });
 
         return view;
+
     }
 
     private void showDate() {

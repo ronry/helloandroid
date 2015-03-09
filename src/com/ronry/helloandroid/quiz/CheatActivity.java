@@ -62,7 +62,7 @@ public class CheatActivity extends Activity {
     private void setCheatedResult() {
         Intent data = new Intent();
         data.putExtra(CHEADED_ANSWER_KEY, cheated);
-        CheatActivity.this.setResult(RESULT_OK, data);
+        this.setResult(RESULT_OK, data);
     }
 
 }
